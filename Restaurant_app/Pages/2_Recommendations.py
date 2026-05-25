@@ -44,3 +44,10 @@ st.subheader("Top Recommendations")
 
 cols_to_show = ['name', 'categories', 'stars', 'review_count', 'price', 'score']
 st.dataframe(filtered[cols_to_show].head(10))
+
+st.subheader("📍 Restaurant Map")
+
+if "latitude" in filtered.columns and "longitude" in filtered.columns:
+    st.map(filtered[['latitude', 'longitude']])
+else:
+    st.info("Map unavailable — no coordinates in dataset.")
