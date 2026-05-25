@@ -27,3 +27,15 @@ st.subheader("Recommendation Score Distribution")
 fig3, ax3 = plt.subplots()
 sns.histplot(recommendations['score'], bins=20, ax=ax3)
 st.pyplot(fig3)
+
+st.subheader("Top Cuisines")
+top_cuisines = business['categories'].value_counts().head(10)
+st.bar_chart(top_cuisines)
+
+st.subheader("Average Rating by City")
+avg_rating = business.groupby('city')['stars'].mean().sort_values(ascending=False).head(10)
+st.bar_chart(avg_rating)
+
+st.subheader("Review Length Distribution")
+reviews['review_length'] = reviews['text'].str.len()
+st.histogram(reviews['review_length'])
